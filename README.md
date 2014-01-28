@@ -1,6 +1,6 @@
-# grunt-contrib-sonar
+# grunt-sonar-runner
 
-> Sonar Runner grunt plugin
+> Sonar Analysis Runner from grunt
 
 ## Getting Started
 This plugin requires Grunt `~0.4.2`
@@ -8,30 +8,47 @@ This plugin requires Grunt `~0.4.2`
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
 ```shell
-npm install grunt-contrib-sonar --save-dev
+npm install grunt-sonar-runner --save-dev
 ```
 
 Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
 
 ```js
-grunt.loadNpmTasks('grunt-contrib-sonar');
+grunt.loadNpmTasks('grunt-sonar-runner');
 ```
 
-## The "contrib_sonar" task
+## The "sonarRunner" task
 
 ### Overview
-In your project's Gruntfile, add a section named `contrib_sonar` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `sonarRunner` to the data object passed into `grunt.initConfig()`.
 
 ```js
 grunt.initConfig({
-  contrib_sonar: {
-    options: {
-      // Task-specific options go here.
-    },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
-  },
+sonarRunner: {
+        analysis: {
+            options: {
+                debug: true,
+                separator: '\n',
+                sonar: {
+                    host: {
+                        url: 'http://localhost:9000'
+                    },
+                    jdbc: {
+                        url: 'jdbc:mysql://localhost:3306/sonar',
+                        username: 'sonar',
+                        password: 'sonar'
+                    },
+
+                    projectKey: 'sonar:grunt-sonar-runner:0.1.0',
+                    projectName: 'Grunt Sonar Runner',
+                    projectVersion: '0.10',
+                    sources: ['test'].join(','),
+                    language: 'js',
+                    sourceEncoding: 'UTF-8'
+                }
+            }
+        }
+    }
 });
 ```
 
@@ -56,34 +73,36 @@ In this example, the default options are used to do something with whatever. So 
 
 ```js
 grunt.initConfig({
-  contrib_sonar: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
+  sonarRunner: {
+              analysis: {
+                  options: {
+                      debug: true,
+                      separator: '\n',
+                      sonar: {
+                          host: {
+                              url: 'http://localhost:9000'
+                          },
+                          jdbc: {
+                              url: 'jdbc:mysql://localhost:3306/sonar',
+                              username: 'sonar',
+                              password: 'sonar'
+                          },
+
+                          projectKey: 'sonar:grunt-sonar-runner:0.1.0',
+                          projectName: 'Grunt Sonar Runner',
+                          projectVersion: '0.10',
+                          sources: ['test'].join(','),
+                          language: 'js',
+                          sourceEncoding: 'UTF-8'
+                      }
+                  }
+              }
+          }
 });
 ```
 
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
-
-```js
-grunt.initConfig({
-  contrib_sonar: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
-```
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-_(Nothing yet)_
