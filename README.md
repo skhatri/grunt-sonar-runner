@@ -54,22 +54,84 @@ sonarRunner: {
 
 ### Options
 
+#### options.debug
+Type: `Boolean`
+Default value: `'false'`
+
+A Boolean value to display debug information when preparing sonar analysis.
+
 #### options.separator
 Type: `String`
-Default value: `',  '`
+Default value: os.EOL
 
-A string value that is used to do something with whatever.
+A string value representing a new line character to separate individual sonar properties
 
-#### options.punctuation
+
+#### options.sonar.host.url
 Type: `String`
-Default value: `'.'`
+Default value: 'http://localhost:9000'
 
-A string value that is used to do something else with whatever else.
+Sonar Dashboard URL
+
+#### options.sonar.jdbc.url
+Type: `String`
+Default value: ''
+
+JDBC connection url
+
+
+
+#### options.sonar.jdbc.username
+Type: `String`
+Default value: ''
+
+JDBC connection username
+
+
+#### options.sonar.jdbc.password
+Type: `String`
+Default value: ''
+
+JDBC connection password
+
+
+#### options.sonar.sources
+Type: `String`
+Default value: ''
+
+comma separated list of directories to analyse. All js files in the provided directories will be included.
+
+
+#### options.sonar.projectKey
+Type: `String`
+Default value: ''
+
+project key usually of form group:artifactId:version
+
+
+
+
+#### options.sonar.projectName
+Type: `String`
+Default value: ''
+
+Project Summary
+
+
+
+#### options.sonar.projectVersion
+Type: `String`
+Default value: ''
+
+Current project build version
+
+
+
+
 
 ### Usage Examples
 
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+The configuration code below shows all possible options that are currently supported by the plugin. Any additional sonar properties can be added right inside the sonar object literal.
 
 ```js
 grunt.initConfig({
@@ -105,8 +167,5 @@ To run
 ```
 grunt sonarRunner:analysis
 ```
-
-## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History

@@ -46,7 +46,7 @@ module.exports = function (grunt) {
 
         options.sonar.language = options.sonar.language || 'js';
         options.sonar.sourceEncoding = options.sonar.sourceEncoding || 'UTF-8';
-
+        options.sonar.host = options.sonar.host || {url: 'http://localhost:9000'};
 
         var effectiveOptions = Object.create(null);
         mergeOptions('sonar.', effectiveOptions, options.sonar);
