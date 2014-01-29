@@ -67,6 +67,13 @@ Default value: os.EOL
 A string value representing a new line character to separate individual sonar properties
 
 
+#### options.dryRun
+Type: `Boolean`
+Default value: 'false'
+
+A flag to run it in dry mode. The configuration is checked but not execute
+
+
 #### options.sonar.host.url
 Type: `String`
 Default value: 'http://localhost:9000'
@@ -128,7 +135,6 @@ Current project build version
 
 
 
-
 ### Usage Examples
 
 The configuration code below shows all possible options that are currently supported by the plugin. Any additional sonar properties can be added right inside the sonar object literal.
@@ -140,6 +146,7 @@ grunt.initConfig({
                   options: {
                       debug: true,
                       separator: '\n',
+                      dryRun: false,
                       sonar: {
                           host: {
                               url: 'http://localhost:9000'
