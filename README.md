@@ -1,6 +1,7 @@
 # grunt-sonar-runner
 
 > Sonar Analysis Runner from grunt
+[![Build Status](https://travis-ci.org/skhatri/grunt-sonar-runner.png)](https://travis-ci.org/skhatri/grunt-sonar-runner)
 
 ## Getting Started
 This plugin requires Grunt `~0.4.2`
