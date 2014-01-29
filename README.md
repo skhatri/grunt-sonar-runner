@@ -2,7 +2,7 @@
 
 > Sonar Analysis Runner from grunt
 
-[![Build Status](https://travis-ci.org/skhatri/grunt-sonar-runner.png)](https://travis-ci.org/skhatri/grunt-sonar-runner) [![NPM version](https://badge.fury.io/js/grunt-sonar-runner.png)](http://npmjs.org/packages/grunt-sonar-runner)
+[![Build Status](https://travis-ci.org/skhatri/grunt-sonar-runner.png)](https://travis-ci.org/skhatri/grunt-sonar-runner) [![NPM version](https://badge.fury.io/js/grunt-sonar-runner.png)](http://npmjs.org/package/grunt-sonar-runner)
 ## Getting Started
 This plugin requires Grunt `~0.4.2`
 
