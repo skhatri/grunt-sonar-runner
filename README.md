@@ -136,6 +136,15 @@ Current project build version
 
 
 
+#### options.sonar.javascript.lcov.reportPath
+Type: `String`
+Default value: -
+
+Path to the LCOV Code Coverage File to be used in Sonar
+
+
+
+
 
 ### Usage Examples
 
