@@ -47,7 +47,7 @@ module.exports = function (grunt) {
         options.sonar.language = options.sonar.language || 'js';
         options.sonar.sourceEncoding = options.sonar.sourceEncoding || 'UTF-8';
         options.sonar.host = options.sonar.host || {url: 'http://localhost:9000'};
-        if (options.sonar.exclusions !== undefined) {
+        if (Array.isArray(options.sonar.exclusions)) {
             options.sonar.exclusions = options.sonar.exclusions.join(',');
         }
 
