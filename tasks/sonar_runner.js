@@ -11,9 +11,9 @@
 var childProcess = require('child_process'), format = require('util').format, os = require('os');
 
 module.exports = function (grunt) {
-    var SONAR_RUNNER_HOME = __dirname+'/../sonar-runner-2.3';
+    var SONAR_RUNNER_HOME = __dirname+'/../sonar-runner-2.4';
 
-    var JAR = '/lib/sonar-runner-dist-2.3.jar';
+    var JAR = '/lib/sonar-runner-dist-2.4.jar';
     var SONAR_RUNNER_COMMAND = 'java -jar ' + SONAR_RUNNER_HOME + JAR+' -X -Drunner.home=' + SONAR_RUNNER_HOME;
     var LIST_CMD = (/^win/).test(os.platform()) ? 'dir '+SONAR_RUNNER_HOME + JAR : 'ls '+SONAR_RUNNER_HOME + JAR;
 

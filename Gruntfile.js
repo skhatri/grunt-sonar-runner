@@ -39,7 +39,7 @@ module.exports = function (grunt) {
                             url: 'http://localhost:9000'
                         },
                         jdbc: {
-                            url: 'jdbc:mysql://localhost:3306/sonar',
+                            url: 'jdbc:h2:tcp://localhost:9092/sonar',
                             username: 'sonar',
                             password: 'sonar'
                         },
