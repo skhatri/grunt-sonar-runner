@@ -20,8 +20,7 @@ describe('Sonar Runner', function () {
         sonarConfig['sonar.host.url'].should.equal('http://localhost:9000');
     });
 
-    it('default encoding is UTF-8 and language is js', function () {
-        sonarConfig['sonar.language'].should.be.equal('js');
+    it('default encoding is UTF-8', function () {
         sonarConfig['sonar.sourceEncoding'].should.be.equal('UTF-8');
     });
 
