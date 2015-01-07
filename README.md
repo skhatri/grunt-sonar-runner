@@ -119,7 +119,6 @@ project key usually of form group:artifactId:version
 
 
 
-
 #### options.sonar.projectName
 Type: `String`
 Default value: ''
@@ -136,11 +135,20 @@ Current project build version
 
 
 
+#### options.sonar.language
+Type: `String`
+Default value: null
+
+Sets the project language. A list of language plugins can be found [here](http://docs.sonarqube.org/display/SONAR/Plugin+Library). If this property is undefined, a multi language project will be assumed and the sources searched for valid/supported languages.
+
+
+
 #### options.sonar.javascript.lcov.reportPath
 Type: `String`
 Default value: -
 
 Path to the LCOV Code Coverage File to be used in Sonar
+
 
 
 #### options.sonar.exclusions

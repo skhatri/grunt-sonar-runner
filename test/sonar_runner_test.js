@@ -20,9 +20,12 @@ describe('Sonar Runner', function () {
         sonarConfig['sonar.host.url'].should.equal('http://localhost:9000');
     });
 
-    it('default encoding is UTF-8 and language is js', function () {
-        sonarConfig['sonar.language'].should.be.equal('js');
+    it('default encoding is UTF-8', function () {
         sonarConfig['sonar.sourceEncoding'].should.be.equal('UTF-8');
+    });
+    
+    it('default language is multi language (not set)', function () {
+        should.not.exist(sonarConfig['sonar.language']);
     });
 
     it('database config is picked from jdbc node', function () {

@@ -44,7 +44,10 @@ module.exports = function (grunt) {
         var dryRun = options.dryRun;
         var done = this.async();
 
-        options.sonar.language = options.sonar.language || 'js';
+        // in case the language property isn't set sonar assumes this is a multi language project
+        if (options.sonar.language) {
+            options.sonar.language = options.sonar.language;
+        }
         options.sonar.sourceEncoding = options.sonar.sourceEncoding || 'UTF-8';
         options.sonar.host = options.sonar.host || {url: 'http://localhost:9000'};
         if (Array.isArray(options.sonar.exclusions)) {
