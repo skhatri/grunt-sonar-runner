@@ -78,7 +78,11 @@ module.exports = function (grunt) {
 
 
         var execCmd = dryRun ? LIST_CMD : SONAR_RUNNER_COMMAND;
-        var exec = childProcess.exec(execCmd, callback);
+
+        grunt.log.writeln("sonar-runner exec: " + SONAR_RUNNER_COMMAND);
+
+        var exec = childProcess.exec(execCmd, { maxBuffer: 400 * 1024 }, callback);
+
         exec.stdout.on('data', function (c) {
             grunt.log.write(c);
         });
