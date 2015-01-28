@@ -75,6 +75,12 @@ Default value: 'false'
 
 A flag to run it in dry mode. The configuration is checked but not execute
 
+#### options.maxBuffer
+Type: `Number`
+Default value: `'null'`
+
+maxBuffer specifies the largest amount of data allowed on stdout or stderr - if this value is exceeded then the child process is killed and an error returned from sonar-runner.  See: [child_process.exec()](http://nodejs.org/api/child_process.html#child_process_child_process_exec_command_options_callback)
+
 
 #### options.sonar.host.url
 Type: `String`
