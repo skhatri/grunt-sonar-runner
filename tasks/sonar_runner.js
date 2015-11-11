@@ -14,7 +14,7 @@ module.exports = function (grunt) {
     var SONAR_RUNNER_HOME = process.env.SONAR_RUNNER_HOME || __dirname+'/../sonar-runner-2.4';
 
     var JAR = '/lib/sonar-runner-dist-2.4.jar';
-    var SONAR_RUNNER_COMMAND = 'java -jar ' + SONAR_RUNNER_HOME + JAR+' -Drunner.home=' + SONAR_RUNNER_HOME;
+    var SONAR_RUNNER_COMMAND = 'java ' + process.env.SONAR_RUNNER_OPTS +  ' -jar ' + SONAR_RUNNER_HOME + JAR+' -Drunner.home=' + SONAR_RUNNER_HOME;
     var LIST_CMD = (/^win/).test(os.platform()) ? 'dir '+SONAR_RUNNER_HOME + JAR : 'ls '+SONAR_RUNNER_HOME + JAR;
 
     var mergeOptions = function (prefix, effectiveOptions, obj) {
