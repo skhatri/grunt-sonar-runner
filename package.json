@@ -7,10 +7,7 @@
         "name": "Suresh Khatri",
         "email": "servlet2@msn.com"
     },
-    "repository": {
-        "type": "git",
-        "url": "git@github.com/skhatri/grunt-sonar-runner.git"
-    },
+    "repository": "skhatri/grunt-sonar-runner",
     "bugs": {
         "url": "https://github.com/skhatri/grunt-sonar-runner/issues"
     },
