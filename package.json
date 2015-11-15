@@ -1,7 +1,7 @@
 {
     "name": "grunt-sonar-runner",
     "description": "Sonar Analysis Runner from grunt. The major version is kept in sync with sonar runner distribution version.",
-    "version": "2.4.3",
+    "version": "2.4.4",
     "homepage": "https://github.com/skhatri/grunt-sonar-runner",
     "author": {
         "name": "Suresh Khatri",
