@@ -8,14 +8,14 @@
 
 'use strict';
 
-var childProcess = require('child_process'), format = require('util').format, os = require('os');
+var childProcess = require('child_process'), format = require('util').format, os = require('os'), path = require('path');
 
 module.exports = function (grunt) {
     var SONAR_RUNNER_HOME = process.env.SONAR_RUNNER_HOME || __dirname+'/../sonar-runner-2.4';
-    var SONAR_RUNNER_OPTS = process.env.SONAR_RUNNER_OPTS || ""
+    var SONAR_RUNNER_OPTS = process.env.SONAR_RUNNER_OPTS || "";
 
     var JAR = '/lib/sonar-runner-dist-2.4.jar';
-    var SONAR_RUNNER_COMMAND = 'java ' + SONAR_RUNNER_OPTS + ' -jar ' + SONAR_RUNNER_HOME + JAR+' -Drunner.home=' + SONAR_RUNNER_HOME;
+    var SONAR_RUNNER_COMMAND = 'java ' + SONAR_RUNNER_OPTS + ' -jar ' + SONAR_RUNNER_HOME + JAR+' -Drunner.home=' + SONAR_RUNNER_HOME;        
     var LIST_CMD = (/^win/).test(os.platform()) ? 'dir '+SONAR_RUNNER_HOME + JAR : 'ls '+SONAR_RUNNER_HOME + JAR;
 
     var mergeOptions = function (prefix, effectiveOptions, obj) {
@@ -50,7 +50,9 @@ module.exports = function (grunt) {
             options.sonar.language = options.sonar.language;
         }
         options.sonar.sourceEncoding = options.sonar.sourceEncoding || 'UTF-8';
-        options.sonar.host = options.sonar.host || {url: 'http://localhost:9000'};
+        if (!options.projectHome) {
+            options.sonar.host = options.sonar.host || {url: 'http://localhost:9000'};
+        }
         if (Array.isArray(options.sonar.exclusions)) {
             options.sonar.exclusions = options.sonar.exclusions.join(',');
         }
@@ -69,10 +71,16 @@ module.exports = function (grunt) {
             if (options.debug) {
                 grunt.log.writeln(line);
             }
+        }              
+        
+        if (options.projectHome) {
+            var projectProperties = path.join(options.projectHome, ".sonar/conf/sonar-project.properties");
+            SONAR_RUNNER_COMMAND += ' -Dproject.settings=' + projectProperties + ' -Dproject.home=' + options.projectHome;        
+            grunt.file.write(projectProperties, props.join(options.separator)); 
+        } else {
+            grunt.file.write(SONAR_RUNNER_HOME + '/conf/sonar-runner.properties', props.join(options.separator));        
         }
-
-
-        grunt.file.write(SONAR_RUNNER_HOME + '/conf/sonar-runner.properties', props.join(options.separator));
+        
         if (options.debug) {
             grunt.log.writeln('Sonar client configured ');
         }
