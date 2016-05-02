@@ -1,7 +1,7 @@
 {
     "name": "grunt-sonar-runner",
     "description": "Sonar Analysis Runner from grunt. The major version is kept in sync with sonar runner distribution version.",
-    "version": "2.4.6",
+    "version": "2.5.0-beta",
     "homepage": "https://github.com/skhatri/grunt-sonar-runner",
     "author": {
         "name": "Suresh Khatri",
@@ -24,14 +24,14 @@
         "test": "grunt test"
     },
     "devDependencies": {
-        "grunt-contrib-jshint": "~0.10.0",
-        "grunt-contrib-clean": "~0.6.0",
+        "grunt-contrib-jshint": "~0.11.0",
+        "grunt-contrib-clean": "~0.7.0",
         "grunt": ">=0.4.5",
         "grunt-mocha-test": "~0.12.4",
         "should":"~4.4.1"
     },
     "peerDependencies": {
-        "grunt": "~0.4.5"
+        "grunt": ">=0.4.5"
     },
     "keywords": [
         "gruntplugin", "sonar", "sonar-runner"
