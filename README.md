@@ -167,7 +167,7 @@ Path to the LCOV Code Coverage File to be used in Sonar
 Type: `String` or `[String]`  
 Default value: null
 
-A list of directories and files that should be excluded from Sonar analysis. A list of wildcards that can be use can be found [here](http://docs.codehaus.org/display/SONAR/Narrowing+the+Focus#NarrowingtheFocus-Patterns).
+A list of directories and files that should be excluded from Sonar analysis. A list of wildcards that can be use can be found [here](http://docs.sonarqube.org/display/SONAR/Narrowing+the+Focus#NarrowingtheFocus-patterns).
 
 
 
