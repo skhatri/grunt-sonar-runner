@@ -7,7 +7,7 @@ describe('Sonar Runner', function () {
     var sonarConfig;
 
     beforeEach(function () {
-        var config = grunt.file.read('sonar-runner-2.4/conf/sonar-runner.properties');
+        var config = grunt.file.read('sonar-scanner-2.6/conf/sonar-scanner.properties');
         var lines = config.split('\n');
         sonarConfig = Object.create(null);
         lines.forEach(function (line) {
@@ -27,11 +27,4 @@ describe('Sonar Runner', function () {
     it('default language is multi language (not set)', function () {
         should.not.exist(sonarConfig['sonar.language']);
     });
-
-    it('database config is picked from jdbc node', function () {
-        sonarConfig['sonar.jdbc.url'].should.be.equal('jdbc:mysql://localhost:3306/sonar');
-        sonarConfig['sonar.jdbc.username'].should.be.equal('sonar');
-        sonarConfig['sonar.jdbc.password'].should.be.equal('sonar');
-    });
-
 });

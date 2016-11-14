@@ -11,12 +11,12 @@
 var childProcess = require('child_process'), format = require('util').format, os = require('os'), path = require('path');
 
 module.exports = function (grunt) {
-    var SONAR_RUNNER_HOME = process.env.SONAR_RUNNER_HOME || __dirname+'/../sonar-runner-2.4';
+    var SONAR_RUNNER_HOME = process.env.SONAR_RUNNER_HOME || __dirname+'/../sonar-scanner-2.6';
     var SONAR_RUNNER_OPTS = process.env.SONAR_RUNNER_OPTS || "";
 
-    var JAR = SONAR_RUNNER_HOME + '/lib/sonar-runner-dist-2.4.jar';
-    var SONAR_RUNNER_COMMAND = 'java ' + SONAR_RUNNER_OPTS + ' -jar "' + JAR + '" -Drunner.home="' + SONAR_RUNNER_HOME + '"';
-    var LIST_CMD = (/^win/).test(os.platform()) ? 'dir "' + JAR + '"' : 'ls "' + JAR + '"';
+    var JAR = SONAR_RUNNER_HOME + '/lib/sonar-scanner-cli-2.6.jar';
+    var SONAR_RUNNER_COMMAND = 'java ' + SONAR_RUNNER_OPTS + ' -jar ' + JAR +' -Drunner.home=' + SONAR_RUNNER_HOME;        
+    var LIST_CMD = (/^win/).test(os.platform()) ? 'dir "'+ JAR + '"' : 'ls "' + JAR + '"';
 
     var mergeOptions = function (prefix, effectiveOptions, obj) {
         for (var j in obj) {
@@ -75,10 +75,10 @@ module.exports = function (grunt) {
         
         if (options.projectHome) {
             var projectProperties = path.join(options.projectHome, ".sonar/conf/sonar-project.properties");
-            SONAR_RUNNER_COMMAND += ' -Dproject.settings=' + projectProperties + ' -Dproject.home=' + options.projectHome;        
+            SONAR_RUNNER_COMMAND += ' -Dproject.settings=' + projectProperties;
             grunt.file.write(projectProperties, props.join(options.separator)); 
         } else {
-            grunt.file.write(SONAR_RUNNER_HOME + '/conf/sonar-runner.properties', props.join(options.separator));        
+            SONAR_RUNNER_COMMAND += ' -D' + props.join(' -D');
         }
         
         if (options.debug) {
