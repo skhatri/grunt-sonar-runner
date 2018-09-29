@@ -81,13 +81,6 @@ Default value: `'null'`
 
 maxBuffer specifies the largest amount of data allowed on stdout or stderr - if this value is exceeded then the child process is killed and an error returned from sonar-runner.  See: [child_process.exec()](http://nodejs.org/api/child_process.html#child_process_child_process_exec_command_options_callback)
 
-#### options.projectHome
-Type: `String`
-Default value: ''
-
-A string value representing a root path from the project, if configured it will create a project configuration file based on options.sonar without override default runner configuration file.
-If the root path contains a file named sonar-project.properties, this file will be considered instead
-
 #### options.sonar.host.url
 Type: `String`
 Default value: 'http://localhost:9000'
