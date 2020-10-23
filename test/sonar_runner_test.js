@@ -7,7 +7,7 @@ describe('Sonar Runner', function () {
     var sonarConfig;
 
     beforeEach(function () {
-        var config = grunt.file.read('sonar-runner-2.4/conf/sonar-runner.properties');
+        var config = grunt.file.read('sonar-runner-2.5/conf/sonar-runner.properties');
         var lines = config.split('\n');
         sonarConfig = Object.create(null);
         lines.forEach(function (line) {
