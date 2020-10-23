@@ -5,6 +5,7 @@
 # Optional ENV vars:
 #   SONAR_RUNNER_HOME - location of runner's installed home dir
 #   SONAR_RUNNER_OPTS - parameters passed to the Java VM when running Sonar
+#   SONAR_RUNNER_ARGS - arguments passed to the Java VM when running Sonar
 
 # The following notice only apply to real_path function copied from
 # https://sites.google.com/site/jdisnard/realpath
@@ -86,12 +87,12 @@ if [ ! -z "$JAVA_HOME" ] ; then
 fi
 
 # check that the SONAR_RUNNER_HOME has been correctly set
-if [ ! -f "$SONAR_RUNNER_HOME/lib/sonar-runner-dist-2.4.jar" ] ; then
+if [ ! -f "$SONAR_RUNNER_HOME/lib/sonar-runner-dist-2.5-RC1.jar" ] ; then
   echo '$SONAR_RUNNER_HOME' does not point to a valid installation directory: $SONAR_RUNNER_HOME
   exit 1
 fi
 
-JAR_FILE="${SONAR_RUNNER_HOME}"/lib/sonar-runner-dist-2.4.jar
+JAR_FILE="${SONAR_RUNNER_HOME}"/lib/sonar-runner-dist-2.5-RC1.jar
 PROJECT_HOME=`pwd`
 
 #echo "Info: Using sonar-runner at $SONAR_RUNNER_HOME"
@@ -104,4 +105,4 @@ exec "$JAVA_CMD" \
   -classpath  $JAR_FILE \
   "-Drunner.home=${SONAR_RUNNER_HOME}" \
   "-Dproject.home=${PROJECT_HOME}" \
-  org.sonar.runner.Main "$@"
+  org.sonar.runner.Main $SONAR_RUNNER_ARGS "$@"
