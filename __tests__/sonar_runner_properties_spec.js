@@ -1,34 +1,34 @@
 'use strict';
 
-var grunt = require('grunt'), should=require('should');
+let grunt = require('grunt'), should = require('should');
 
-describe('Sonar Runner', function () {
+describe('Sonar Runner Properties', function () {
 
-    var sonarConfig;
+    let sonarConfig;
 
-    beforeEach(function () {
-        var config = grunt.file.read('sonar-scanner-4.5/conf/sonar-scanner.properties');
-        var lines = config.split('\n');
+    beforeEach(() => {
+        let config = grunt.file.read('sonar-scanner-4.5/conf/sonar-scanner.properties');
+        let lines = config.split('\n');
         sonarConfig = Object.create(null);
         lines.forEach(function (line) {
-            var lineParts = line.split('=');
+            let lineParts = line.split('=');
             sonarConfig[lineParts[0]] = lineParts[1];
         });
     });
 
-    it('set host url', function () {
+    it('set host url', () => {
         sonarConfig['sonar.host.url'].should.equal('http://localhost:9000');
     });
 
-    it('default encoding is UTF-8', function () {
+    it('default encoding is UTF-8', () => {
         sonarConfig['sonar.sourceEncoding'].should.be.equal('UTF-8');
     });
-    
-    it('default language is multi language (not set)', function () {
+
+    it('default language is multi language (not set)', () => {
         should.not.exist(sonarConfig['sonar.language']);
     });
 
-    it('database config is picked from jdbc node', function () {
+    it('database config is picked from jdbc node', () => {
         sonarConfig['sonar.jdbc.url'].should.be.equal('jdbc:mysql://localhost:3306/sonar');
         sonarConfig['sonar.jdbc.username'].should.be.equal('sonar');
         sonarConfig['sonar.jdbc.password'].should.be.equal('sonar');

@@ -47,10 +47,15 @@ module.exports = function (grunt) {
                         },
                         projectKey: 'sonar:grunt-sonar-runner:3.0.0',
                         projectName: 'Grunt Sonar Runner',
-                        projectVersion: '3.0.0',
-                        sources: ['tasks', 'test'].join(','),
+                        projectVersion: '3.0.1',
+                        sources: ['tasks'].join(','),
                         language: 'js',
-                        sourceEncoding: 'UTF-8'
+                        sourceEncoding: 'UTF-8',
+                        javascript: {
+                            lcov: {
+                                reportPaths: 'coverage/lcov.info'
+                            }
+                        }
                     }
                 }
             },
@@ -70,26 +75,21 @@ module.exports = function (grunt) {
                             username: 'sonar',
                             password: 'sonar'
                         },
-                        projectKey: 'sonar:grunt-sonar-runner:0.1.0',
+                        projectKey: 'sonar:grunt-sonar-runner:3.0.1',
                         projectName: 'Grunt Sonar Runner',
-                        projectVersion: '0.10',
-                        sources: ['test'].join(','),
+                        projectVersion: '3.0.1',
+                        sources: ['tasks'].join(','),
                         exclusions: '**/R.js'
                     }
                 }
             }
         },
-
-        // Unit tests.
-        mochaTest: {
-            test: {
-                options: {
-                    reporter: 'spec'
-                },
-                src: ['test/**/*.js']
-            }
+        
+        run: {
+          jest_test: {
+            exec: 'npm run jest-test --silent'
+          }
         }
-
     });
 
 
@@ -98,10 +98,9 @@ module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-mocha-test');
+    grunt.loadNpmTasks('grunt-run');
 
-
-    grunt.registerTask('test', ['clean', 'sonarRunner:dryRun', 'mochaTest']);
+    grunt.registerTask('test', ['clean', 'sonarRunner:dryRun', 'run:jest_test']);
 
     grunt.registerTask('default', ['jshint', 'test']);
 
