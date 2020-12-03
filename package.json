@@ -1,7 +1,7 @@
 {
   "name": "grunt-sonar-runner",
   "description": "Sonar Analysis Runner from grunt. The major version is kept in sync with sonar runner distribution version.",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "homepage": "https://github.com/skhatri/grunt-sonar-runner",
   "author": {
     "name": "Suresh Khatri",
@@ -13,8 +13,8 @@
   },
   "licenses": [
     {
-      "type": "MIT",
-      "url": "https://github.com/skhatri/grunt-sonar-runner/blob/master/LICENSE-MIT"
+      "type": "Apache 2.0",
+      "url": "https://github.com/skhatri/grunt-sonar-runner/blob/master/LICENSE"
     }
   ],
   "engines": {
