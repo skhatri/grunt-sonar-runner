@@ -32,6 +32,8 @@ sonarRunner: {
                 debug: true,
                 separator: '\n',
                 sonar: {
+                    login: 'admin',
+                    password: 'admin',
                     host: {
                         url: 'http://localhost:9000'
                     },
