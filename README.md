@@ -186,6 +186,8 @@ grunt.initConfig({
                       separator: '\n',
                       dryRun: false,
                       sonar: {
+                          login: 'admin',
+                          password: 'admin',                          
                           host: {
                               url: 'http://localhost:9000'
                           },

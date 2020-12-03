@@ -11,17 +11,16 @@
 var childProcess = require('child_process'), format = require('util').format, os = require('os'), path = require('path');
 
 module.exports = function (grunt) {
-    var SONAR_RUNNER_HOME = process.env.SONAR_RUNNER_HOME || __dirname+'/../sonar-runner-2.4';
-    var SONAR_RUNNER_OPTS = process.env.SONAR_RUNNER_OPTS || "";
+    var SONAR_SCANNER_HOME = path.normalize(process.env.SONAR_SCANNER_HOME || __dirname+'/../sonar-scanner-4.5');
+    var SONAR_SCANNER_OPTS = process.env.SONAR_SCANNER_OPTS || "";
 
-    var JAR = SONAR_RUNNER_HOME + '/lib/sonar-runner-dist-2.4.jar';
-    var SONAR_RUNNER_COMMAND = 'java ' + SONAR_RUNNER_OPTS + ' -jar "' + JAR + '" -Drunner.home="' + SONAR_RUNNER_HOME + '"';
+    var JAR = SONAR_SCANNER_HOME + '/lib/sonar-scanner-cli-4.5.0.2216.jar';
+    var SONAR_SCANNER_COMMAND = 'java ' + '-Dscanner.home="' + SONAR_SCANNER_HOME + '"' + SONAR_SCANNER_OPTS + ' -jar "' + JAR +'"';
     var LIST_CMD = (/^win/).test(os.platform()) ? 'dir "' + JAR + '"' : 'ls "' + JAR + '"';
 
     var mergeOptions = function (prefix, effectiveOptions, obj) {
         for (var j in obj) {
             if (obj.hasOwnProperty(j)) {
-
                 if (typeof obj[j] === 'object') {
                     mergeOptions(prefix + j + '.', effectiveOptions, obj[j]);
                 } else {
@@ -45,10 +44,6 @@ module.exports = function (grunt) {
         var dryRun = options.dryRun;
         var done = this.async();
 
-        // in case the language property isn't set sonar assumes this is a multi language project
-        if (options.sonar.language) {
-            options.sonar.language = options.sonar.language;
-        }
         options.sonar.sourceEncoding = options.sonar.sourceEncoding || 'UTF-8';
         if (!options.projectHome) {
             options.sonar.host = options.sonar.host || {url: 'http://localhost:9000'};
@@ -75,10 +70,10 @@ module.exports = function (grunt) {
         
         if (options.projectHome) {
             var projectProperties = path.join(options.projectHome, ".sonar/conf/sonar-project.properties");
-            SONAR_RUNNER_COMMAND += ' -Dproject.settings=' + projectProperties + ' -Dproject.home=' + options.projectHome;        
+            SONAR_SCANNER_COMMAND += ' -Dproject.settings=' + projectProperties + ' -Dproject.home=' + options.projectHome;        
             grunt.file.write(projectProperties, props.join(options.separator)); 
         } else {
-            grunt.file.write(SONAR_RUNNER_HOME + '/conf/sonar-runner.properties', props.join(options.separator));        
+            grunt.file.write(SONAR_SCANNER_HOME + '/conf/sonar-scanner.properties', props.join(options.separator));
         }
         
         if (options.debug) {
@@ -86,9 +81,9 @@ module.exports = function (grunt) {
         }
 
 
-        var execCmd = dryRun ? LIST_CMD : SONAR_RUNNER_COMMAND;
+        var execCmd = dryRun ? LIST_CMD : SONAR_SCANNER_COMMAND;
 
-        grunt.log.writeln("sonar-runner exec: " + SONAR_RUNNER_COMMAND);
+        grunt.log.writeln("sonar-scanner CMD: \n\n" + SONAR_SCANNER_COMMAND +"\n");
 
         var exec = childProcess.exec(execCmd,
             options.maxBuffer ? { maxBuffer: options.maxBuffer } : {},

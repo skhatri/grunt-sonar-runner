@@ -35,6 +35,8 @@ module.exports = function (grunt) {
                     debug: true,
                     separator: '\n',
                     sonar: {
+                        login: 'admin',
+                        password: 'admin',
                         host: {
                             url: 'http://localhost:9000'
                         },
@@ -43,10 +45,10 @@ module.exports = function (grunt) {
                             username: 'sonar',
                             password: 'sonar'
                         },
-                        projectKey: 'sonar:grunt-sonar-runner:0.1.0',
+                        projectKey: 'sonar:grunt-sonar-runner:3.0.0',
                         projectName: 'Grunt Sonar Runner',
-                        projectVersion: '0.10',
-                        sources: ['test'].join(','),
+                        projectVersion: '3.0.0',
+                        sources: ['tasks', 'test'].join(','),
                         language: 'js',
                         sourceEncoding: 'UTF-8'
                     }
@@ -58,6 +60,8 @@ module.exports = function (grunt) {
                     debug: true,
                     separator: '\n',
                     sonar: {
+                        login: 'admin',
+                        password: 'admin',
                         host: {
                             url: 'http://localhost:9000'
                         },
